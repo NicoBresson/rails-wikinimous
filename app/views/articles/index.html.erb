@@ -1,7 +1,7 @@
 <%= link_to "Create new Wikinimous article", new_article_path %>
 <% @articles.each do |article| %>
 <h1><%= article.title %></h1>
-<p><%= article.content %></p>
+<%= Kramdown::Document.new(article.content).to_html.html_safe %>
 <%= link_to "Show Wikinimous article", article_path(article) %>
 <%= link_to "Edit Wikinimous article", edit_article_path(article) %>
 <%= link_to "Delete Wikinimous article", article_path(article), method: 'delete', data:{ confirm: "Are you sure?" } %>
